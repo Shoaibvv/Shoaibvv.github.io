@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MD Shoaib — Developer</title>
+
+  <style>
+
+    /* =============================================
+       GLOBAL STYLES
+    ============================================= */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Times New Roman everywhere, black background, white text */
+    body {
+      background-color: #000000;
+      color: #e8e8e8;
+      font-family: 'Times New Roman', Times, serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* =============================================
+       STARS BACKGROUND
+    ============================================= */
+
+    #stars-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      background-color: white;
+      border-radius: 50%;
+      animation: twinkle 4s infinite;
+    }
+
+    @keyframes twinkle {
+      0%   { opacity: 0.15; }
+      50%  { opacity: 0.8;  }
+      100% { opacity: 0.15; }
+    }
+
+    /* =============================================
+       NAVIGATION
+    ============================================= */
+
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 18px 0;
+      transition: all 0.3s ease;
+      /* thin bottom border like a newspaper header rule */
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    #navbar.scrolled {
+      background-color: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 12px 0;
+    }
+
+    .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Logo - looks like a newspaper masthead */
+    .nav-logo {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 22px;
+      font-weight: bold;
+      color: #ffffff;
+      text-decoration: none;
+      letter-spacing: 2px;
+      font-style: italic;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav-link {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      color: #777777;
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: #ffffff;
+    }
+
+    /* Mobile hamburger - hidden on desktop */
+    #hamburger-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #777777;
+      font-size: 26px;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    #mobile-menu {
+      display: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 14px;
+    }
+
+    #mobile-menu.open {
+      display: block;
+    }
+
+    .mobile-nav-links {
+      list-style: none;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* Show hamburger on small screens */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      #hamburger-btn { display: block; }
+    }
+
+    /* =============================================
+       PAGE WRAPPER - max width centered
+    ============================================= */
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* =============================================
+       SECTION DIVIDERS - thick newspaper rules
+    ============================================= */
+
+    .section-rule {
+      border: none;
+      border-top: 3px solid #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .section-rule-thin {
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    /* =============================================
+       SECTION LABEL - small caps like a newspaper column tag
+    ============================================= */
+
+    .section-tag {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: #888888;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    /* =============================================
+       HERO SECTION
+    ============================================= */
+
+    #home {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 100px;
+      padding-bottom: 60px;
+    }
+
+    /* Big masthead-style name */
+    .hero-name {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: clamp(56px, 11vw, 110px);
+      font-weight: bold;
+      line-height: 0.95;
+      letter-spacing: -1px;
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+
+    /* Thin rule under the name like a newspaper byline separator */
+    .hero-rule {
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
+      margin: 20px 0;
+    }
+
+    .hero-tagline {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 16px;
+      font-style: italic;
+      color: #888888;
+      max-width: 500px;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    /* Buttons - minimal, newspaper style */
+    .btn-main {
+      display: inline-block;
+      background-color: #ffffff;
+      color: #000000;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 10px 22px;
+      text-decoration: none;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .btn-main:hover {
+      background-color: #dddddd;
+    }
+
+    .btn-outline {
+      display: inline-block;
+      background-color: transparent;
+      color: #aaaaaa;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 10px 22px;
+      border: 1px solid #444444;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-outline:hover {
+      border-color: #aaaaaa;
+      color: #ffffff;
+    }
+
+    /* Scroll arrow at bottom of hero */
+    .scroll-hint {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #444444;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* =============================================
+       GENERAL SECTIONS
+    ============================================= */
+
+    section {
+      padding: 72px 0;
+    }
+
+    /* Big section heading - like a newspaper article headline */
+    .section-heading {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: bold;
+      color: #ffffff;
+      line-height: 1.1;
+      margin-bottom: 40px;
+    }
+
+    /* Body text */
+    p {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15px;
+      line-height: 1.85;
+      color: #777777;
+    }
+
+    /* =============================================
+       ABOUT SECTION - two columns like a newspaper
+    ============================================= */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+
+    @media (max-width: 640px) {
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    /* Education info line */
+    .info-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .info-line-label {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      font-weight: bold;
+      color: #aaaaaa;
+      letter-spacing: 1px;
+    }
+
+    .info-line-value {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      color: #666666;
+      font-style: italic;
+    }
+
+    /* =============================================
+       SKILLS SECTION
+    ============================================= */
+
+    .skills-category-label {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #555555;
+      margin-bottom: 12px;
+    }
+
+    .skills-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+
+    /* Each skill badge - simple box, no decoration */
+    .skill-badge {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      color: #888888;
+      padding: 5px 12px;
+      border: 1px solid #2a2a2a;
+      background: transparent;
+      cursor: default;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .skill-badge:hover {
+      border-color: #888888;
+      color: #dddddd;
+    }
+
+    /* =============================================
+       PROJECTS SECTION
+    ============================================= */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px; /* thin rule between cards */
+      background-color: rgba(255, 255, 255, 0.1); /* the gap colour */
+    }
+
+    @media (max-width: 640px) {
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+
+    .project-card {
+      background-color: #000000;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-date {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #555555;
+      margin-bottom: 10px;
+    }
+
+    .project-title {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 16px;
+      font-weight: bold;
+      color: #dddddd;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+
+    .project-bullets {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      line-height: 1.75;
+      color: #666666;
+      padding-left: 16px;
+      flex-grow: 1;
+      margin-bottom: 16px;
+    }
+
+    .project-bullets li {
+      margin-bottom: 6px;
+    }
+
+    .tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tech-tag {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 11px;
+      font-style: italic;
+      color: #666666;
+      border: 1px solid #2a2a2a;
+      padding: 2px 8px;
+    }
+
+    /* =============================================
+       EXPERIENCE SECTION
+    ============================================= */
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 24px;
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    @media (max-width: 640px) {
+      .exp-item { grid-template-columns: 1fr; gap: 8px; }
+    }
+
+    .exp-date {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 12px;
+      font-style: italic;
+      color: #555555;
+      line-height: 1.6;
+      padding-top: 2px;
+    }
+
+    .exp-role {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 16px;
+      font-weight: bold;
+      color: #dddddd;
+      margin-bottom: 4px;
+    }
+
+    .exp-company {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      font-style: italic;
+      color: #555555;
+      margin-bottom: 8px;
+    }
+
+    .exp-desc {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      line-height: 1.75;
+      color: #666666;
+    }
+
+    /* =============================================
+       CONTACT SECTION
+    ============================================= */
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-link-label {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #444444;
+      width: 80px;
+      flex-shrink: 0;
+    }
+
+    .contact-link-value {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15px;
+      color: #888888;
+      font-style: italic;
+      transition: color 0.2s;
+    }
+
+    .contact-link:hover .contact-link-value {
+      color: #ffffff;
+    }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+
+    footer {
+      border-top: 3px solid rgba(255, 255, 255, 0.15);
+      padding: 24px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .footer-text {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 12px;
+      font-style: italic;
+      color: #444444;
+    }
+
+    /* =============================================
+       FADE IN ANIMATION
+    ============================================= */
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =============================================
+       SCROLLBAR
+    ============================================= */
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #000000; }
+    ::-webkit-scrollbar-thumb { background: #222222; }
+    ::-webkit-scrollbar-thumb:hover { background: #333333; }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Stars background -->
+  <div id="stars-bg"></div>
+
+  <!-- ============================================
+       NAVIGATION
+  ============================================= -->
+  <nav id="navbar">
+    <div class="nav-inner">
+
+      <!-- Italic masthead logo -->
+      <a href="#home" class="nav-logo">MD Shoaib</a>
+
+      <!-- Desktop links -->
+      <ul class="nav-links">
+        <li><a href="#home"       class="nav-link">Home</a></li>
+        <li><a href="#about"      class="nav-link">About</a></li>
+        <li><a href="#skills"     class="nav-link">Skills</a></li>
+        <li><a href="#projects"   class="nav-link">Projects</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#contact"    class="nav-link">Contact</a></li>
+      </ul>
+
+      <!-- Mobile hamburger -->
+      <button id="hamburger-btn" onclick="toggleMenu()">&#9776;</button>
+    </div>
+
+    <!-- Mobile dropdown -->
+    <div id="mobile-menu">
+      <ul class="mobile-nav-links">
+        <li><a href="#home"       class="nav-link" onclick="closeMenu()">Home</a></li>
+        <li><a href="#about"      class="nav-link" onclick="closeMenu()">About</a></li>
+        <li><a href="#skills"     class="nav-link" onclick="closeMenu()">Skills</a></li>
+        <li><a href="#projects"   class="nav-link" onclick="closeMenu()">Projects</a></li>
+        <li><a href="#experience" class="nav-link" onclick="closeMenu()">Experience</a></li>
+        <li><a href="#contact"    class="nav-link" onclick="closeMenu()">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- ============================================
+       HERO
+  ============================================= -->
+  <section id="home" style="position:relative;">
+    <div class="page">
+
+      <!-- Big name like a newspaper masthead -->
+      <h1 class="hero-name fade-up" style="transition-delay:0.05s;">MD<br>Shoaib</h1>
+
+      <!-- Label under name -->
+      <div class="section-tag fade-up" style="transition-delay:0.1s; margin-top:10px;">Computer Science — Memorial University</div>
+
+      <!-- Thin horizontal rule -->
+      <hr class="hero-rule fade-up" style="transition-delay:0.18s;" />
+
+      <!-- Tagline in italic -->
+      <p class="hero-tagline fade-up" style="transition-delay:0.22s;">
+        Building real things with code — from machine learning models to full-stack backend systems. Seeking co-op opportunities in software development.
+      </p>
+
+      <!-- Buttons -->
+      <div style="display:flex; flex-wrap:wrap; gap:12px;" class="fade-up" style="transition-delay:0.28s;">
+        <a href="#projects" class="btn-main">View Projects</a>
+        <a href="#contact"  class="btn-outline">Contact Me</a>
+      </div>
+
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <span style="font-size:18px;">&#8595;</span>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       ABOUT
+  ============================================= -->
+  <section id="about" style="position:relative; z-index:1;">
+    <div class="page">
+
+      <!-- Section rule like a newspaper column separator -->
+      <hr class="section-rule" />
+      <div class="section-tag">01 — About</div>
+
+      <h2 class="section-heading fade-up">Who I Am</h2>
+
+      <div class="about-grid">
+
+        <!-- Bio text -->
+        <div class="fade-up">
+          <p style="margin-bottom:18px;">
+            I'm a Computer Science student at Memorial University of Newfoundland. I really love coding and solving problems. Right now I'm working on my Bachelor's degree and also getting experience in customer service.
+          </p>
+          <p>
+            I enjoy making coding projects and helping with open-source work. I always want to learn new things in programming. I'm looking for co-op opportunities where I can use my coding skills in a real software development job.
+          </p>
+        </div>
+
+        <!-- Education info -->
+        <div class="fade-up" style="transition-delay:0.1s;">
+          <div class="info-line">
+            <div>
+              <div class="info-line-label">Degree</div>
+              <div class="info-line-value">B.Sc. Computer Science</div>
+            </div>
+          </div>
+          <div class="info-line">
+            <div>
+              <div class="info-line-label">University</div>
+              <div class="info-line-value">Memorial University of Newfoundland</div>
+            </div>
+          </div>
+          <div class="info-line">
+            <div>
+              <div class="info-line-label">Status</div>
+              <div class="info-line-value">Seeking Co-op Placement</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       SKILLS
+  ============================================= -->
+  <section id="skills" style="position:relative; z-index:1;">
+    <div class="page">
+
+      <hr class="section-rule" />
+      <div class="section-tag">02 — Skills</div>
+
+      <h2 class="section-heading fade-up">What I Know</h2>
+
+      <!-- AI & Data -->
+      <div class="fade-up">
+        <div class="skills-category-label">AI &amp; Data</div>
+        <div class="skills-row">
+          <span class="skill-badge">🤖 Machine Learning</span>
+          <span class="skill-badge">🔢 NumPy</span>
+          <span class="skill-badge">🐼 Pandas</span>
+          <span class="skill-badge">🧠 AI Algorithms</span>
+          <span class="skill-badge">♟️ Game Theory</span>
+          <span class="skill-badge">📊 PowerBI</span>
+        </div>
+      </div>
+
+      <!-- Backend & Core -->
+      <div class="fade-up" style="transition-delay:0.08s;">
+        <div class="skills-category-label">Backend &amp; Core</div>
+        <div class="skills-row">
+          <span class="skill-badge">🐍 Python</span>
+          <span class="skill-badge">☕ Java</span>
+          <span class="skill-badge">⚙️ C++</span>
+          <span class="skill-badge">🎯 C#</span>
+          <span class="skill-badge">🟢 Node.js</span>
+          <span class="skill-badge">🔷 TypeScript</span>
+        </div>
+      </div>
+
+      <!-- Database & Tools -->
+      <div class="fade-up" style="transition-delay:0.16s;">
+        <div class="skills-category-label">Database &amp; Tools</div>
+        <div class="skills-row">
+          <span class="skill-badge">🗄️ MySQL</span>
+          <span class="skill-badge">🍃 MongoDB</span>
+          <span class="skill-badge">🐘 PostgreSQL</span>
+          <span class="skill-badge">🔀 Git/GitHub</span>
+          <span class="skill-badge">🐧 Linux</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       PROJECTS
+  ============================================= -->
+  <section id="projects" style="position:relative; z-index:1;">
+    <div class="page">
+
+      <hr class="section-rule" />
+      <div class="section-tag">03 — Projects</div>
+
+      <h2 class="section-heading fade-up">Projects</h2>
+
+      <!-- Three column newspaper layout -->
+      <div class="projects-grid fade-up">
+
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="project-date">Summer 2025</div>
+          <div class="project-title">Inventory Management System</div>
+          <ul class="project-bullets">
+            <li>Built a desktop app using JavaFX and Java OOP that lets users add, edit, delete, and search products in real time, with automatic low-stock alerts using the Observer design pattern.</li>
+            <li>Used Java's Concurrency API to run AWS cloud backups on a background thread, invoking an AWS Lambda function to save inventory data as a CSV file to an S3 bucket.</li>
+          </ul>
+          <div class="tags-row">
+            <span class="tech-tag">Java</span>
+            <span class="tech-tag">JavaFX</span>
+            <span class="tech-tag">AWS S3</span>
+            <span class="tech-tag">AWS Lambda</span>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="project-date">Fall 2025</div>
+          <div class="project-title">Personal Finance Fraud Detector</div>
+          <ul class="project-bullets">
+            <li>Built a full-stack transaction monitoring app with a REST API and PostgreSQL database, exposing endpoints to log and query user transactions in real time.</li>
+            <li>Implemented a rule-based fraud detection engine that automatically flags suspicious activity such as large transfers, rapid consecutive transactions, and odd-hours activity.</li>
+          </ul>
+          <div class="tags-row">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">PostgreSQL</span>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card">
+          <div class="project-date">Winter 2026</div>
+          <div class="project-title">Australian Grand Prix Prediction Engine</div>
+          <ul class="project-bullets">
+            <li>Built an ML model using XGBoost to predict 2026 F1 race finishing order based on qualifying times, grid position, and constructor standings data.</li>
+            <li>Preprocessed and engineered features from real-world racing data, trained with an 80/20 train-test split, and evaluated performance using Mean Absolute Error (MAE).</li>
+          </ul>
+          <div class="tags-row">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">XGBoost</span>
+            <span class="tech-tag">Scikit-learn</span>
+            <span class="tech-tag">Pandas</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       EXPERIENCE
+  ============================================= -->
+  <section id="experience" style="position:relative; z-index:1;">
+    <div class="page">
+
+      <hr class="section-rule" />
+      <div class="section-tag">04 — Experience</div>
+
+      <h2 class="section-heading fade-up">Experience</h2>
+
+      <!-- Job 1 -->
+      <div class="exp-item fade-up">
+        <div class="exp-date">
+          07 / 2022 — Present<br>
+          St. John's NL, Canada
+        </div>
+        <div>
+          <div class="exp-role">Team Member</div>
+          <div class="exp-company">Tim Hortons</div>
+          <p class="exp-desc">Customer service and transaction management in a high-volume fast food environment.</p>
+        </div>
+      </div>
+
+      <!-- Job 2 -->
+      <div class="exp-item fade-up" style="transition-delay:0.1s;">
+        <div class="exp-date">
+          09 / 2023 — Present<br>
+          St. John's NL, Canada
+        </div>
+        <div>
+          <div class="exp-role">Student Assistant</div>
+          <div class="exp-company">Memorial University Bookstore</div>
+          <p class="exp-desc">Assisting customers and managing inventory at the university bookstore while balancing academic studies.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       CONTACT
+  ============================================= -->
+  <section id="contact" style="position:relative; z-index:1;">
+    <div class="page">
+
+      <hr class="section-rule" />
+      <div class="section-tag">05 — Contact</div>
+
+      <h2 class="section-heading fade-up">Get in Touch</h2>
+
+      <p style="max-width:460px; margin-bottom:36px; font-style:italic;" class="fade-up">
+        Looking for co-op opportunities in software development. Feel free to reach out.
+      </p>
+
+      <div class="contact-links fade-up">
+
+        <a href="mailto:mshoaibi@mun.ca" class="contact-link">
+          <span class="contact-link-label">Email</span>
+          <span class="contact-link-value">mshoaibi@mun.ca</span>
+        </a>
+
+        <a href="https://github.com/Shoaibvv" target="_blank" class="contact-link">
+          <span class="contact-link-label">GitHub</span>
+          <span class="contact-link-value">github.com/Shoaibvv</span>
+        </a>
+
+        <a href="https://www.linkedin.com/in/mdshoaib5/" target="_blank" class="contact-link">
+          <span class="contact-link-label">LinkedIn</span>
+          <span class="contact-link-value">linkedin.com/in/mdshoaib5</span>
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       FOOTER
+  ============================================= -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-text">&copy; 2025 MD Shoaib</span>
+    </div>
+  </footer>
+
+
+  <!-- ============================================
+       JAVASCRIPT
+  ============================================= -->
+  <script>
+
+    /* --- 1. CREATE STARS --- */
+
+    var starsContainer = document.getElementById('stars-bg');
+
+    for (var i = 0; i < 180; i++) {
+      var star = document.createElement('div');
+      star.className = 'star';
+
+      var size = Math.random() * 1.5 + 0.8;
+      star.style.width  = size + 'px';
+      star.style.height = size + 'px';
+
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top  = Math.random() * 100 + '%';
+
+      star.style.opacity = Math.random() * 0.5 + 0.1;
+      star.style.animationDelay    = Math.random() * 6 + 's';
+      star.style.animationDuration = (Math.random() * 4 + 2) + 's';
+
+      starsContainer.appendChild(star);
+    }
+
+
+    /* --- 2. NAVBAR SCROLL --- */
+
+    var navbar = document.getElementById('navbar');
+
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+
+    /* --- 3. MOBILE MENU --- */
+
+    function toggleMenu() {
+      document.getElementById('mobile-menu').classList.toggle('open');
+    }
+
+    function closeMenu() {
+      document.getElementById('mobile-menu').classList.remove('open');
+    }
+
+
+    /* --- 4. ACTIVE NAV LINK --- */
+
+    var allSections = document.querySelectorAll('section[id]');
+    var allNavLinks = document.querySelectorAll('.nav-link');
+
+    function updateActiveLink() {
+      var current = '';
+      allSections.forEach(function(section) {
+        if (window.scrollY >= section.offsetTop - 300) {
+          current = section.id;
+        }
+      });
+      allNavLinks.forEach(function(link) {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveLink);
+
+
+    /* --- 5. FADE IN ON SCROLL --- */
+
+    var fadeElements = document.querySelectorAll('.fade-up');
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    fadeElements.forEach(function(el) {
+      observer.observe(el);
+    });
+
+    /* Make hero visible right away */
+    document.querySelectorAll('#home .fade-up').forEach(function(el) {
+      el.classList.add('visible');
+    });
+
+  </script>
+
+</body>
+</html>
