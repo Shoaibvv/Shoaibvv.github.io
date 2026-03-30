@@ -226,7 +226,8 @@
     .hero-rule {
       border: none;
       border-top: 1px solid rgba(255, 255, 255, 0.3);
-      margin: 20px 0;
+      margin: 20px auto;
+      width: 100%;
     }
 
     .hero-tagline {
@@ -316,7 +317,7 @@
     /* Body text */
     p {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 17px;
+      font-size: 19px;
       line-height: 1.85;
       color: #777777;
     }
@@ -346,7 +347,7 @@
 
     .info-line-label {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 13px;
+      font-size: 16px;
       font-weight: bold;
       color: #aaaaaa;
       letter-spacing: 1px;
@@ -354,7 +355,7 @@
 
     .info-line-value {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 13px;
+      font-size: 16px;
       color: #666666;
       font-style: italic;
     }
@@ -382,7 +383,7 @@
     /* Each skill badge - simple box, no decoration */
     .skill-badge {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 15px;
+      font-size: 17px;
       color: #888888;
       padding: 5px 12px;
       border: 1px solid #2a2a2a;
@@ -438,7 +439,7 @@
 
     .project-bullets {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 15px;
+      font-size: 17px;
       line-height: 1.8;
       color: #666666;
       padding-left: 16px;
@@ -500,7 +501,7 @@
 
     .exp-company {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 15px;
+      font-size: 17px;
       font-style: italic;
       color: #555555;
       margin-bottom: 8px;
@@ -508,7 +509,7 @@
 
     .exp-desc {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 15px;
+      font-size: 17px;
       line-height: 1.8;
       color: #666666;
     }
@@ -659,24 +660,29 @@
   <section id="home" style="position:relative;">
     <div class="page">
 
-      <!-- Big name like a newspaper masthead -->
-      <h1 class="hero-name fade-up" style="transition-delay:0.05s;">MD<br>Shoaib</h1>
+      <!-- Everything in one invisible box, centered -->
+      <div style="display:flex; flex-direction:column; align-items:center; text-align:center;" class="fade-up">
 
-      <!-- Label under name -->
-      <div class="section-tag fade-up" style="transition-delay:0.1s; margin-top:10px;">Computer Science — Memorial University</div>
+        <!-- Name on one line -->
+        <h1 class="hero-name" style="white-space:nowrap;">MD Shoaib</h1>
 
-      <!-- Thin horizontal rule -->
-      <hr class="hero-rule fade-up" style="transition-delay:0.18s;" />
+        <!-- Label under name -->
+        <div class="section-tag" style="margin-top:10px;">Computer Science Student — Memorial University</div>
 
-      <!-- Tagline in italic -->
-      <p class="hero-tagline fade-up" style="transition-delay:0.22s;">
-        Building real things with code — from machine learning models to full-stack backend systems. Seeking co-op opportunities in software development.
-      </p>
+        <!-- Thin horizontal rule -->
+        <hr class="hero-rule" />
 
-      <!-- Buttons -->
-      <div style="display:flex; flex-wrap:wrap; gap:12px;" class="fade-up" style="transition-delay:0.28s;">
-        <a href="#projects" class="btn-main">View Projects</a>
-        <a href="#contact"  class="btn-outline">Contact Me</a>
+        <!-- Tagline in italic -->
+        <p class="hero-tagline">
+          Building real things with code — from machine learning models to full-stack backend systems. Seeking co-op opportunities in software development.
+        </p>
+
+        <!-- Buttons -->
+        <div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center;">
+          <a href="#projects" class="btn-main">View Projects</a>
+          <a href="#contact"  class="btn-outline">Contact Me</a>
+        </div>
+
       </div>
 
     </div>
@@ -699,7 +705,7 @@
       <hr class="section-rule" />
       <div class="section-tag">01 — About</div>
 
-      <h2 class="section-heading fade-up">Who I Am</h2>
+      <h2 class="section-heading fade-up">Who Am I?</h2>
 
       <div class="about-grid">
 
@@ -724,7 +730,7 @@
           <div class="info-line">
             <div>
               <div class="info-line-label">University</div>
-              <div class="info-line-value">Memorial University of Newfoundland</div>
+              <div class="info-line-value">Memorial University of Newfoundland and Labrador</div>
             </div>
           </div>
           <div class="info-line">
@@ -1048,3 +1054,4 @@
 
 </body>
 </html>
+
